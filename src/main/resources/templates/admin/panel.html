@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{../static/panel.css}">
+    <title>Админ-панель</title>
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">Центр коммерческого обслуживания автомобилей</a>
+    <div>
+        <ul>
+            <li>
+                <a th:href="@{/}">Главная</a>
+            </li>
+            <li>
+                <a href="#">О нас</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="apps__table">
+        <h1>ЗАЯВКИ</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Услуга</th>
+                <th>Дата</th>
+                <th>E-mail</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="eachApplication : ${applications}">
+                <th th:text="${eachApplication.getId()}"></th>
+                <td th:text="${eachApplication.getMaintenance()}"></td>
+                <td th:text="${eachApplication.getDate()}"></td>
+                <td th:text="${eachApplication.getEmail()}"></td>
+                <td th:text="${eachApplication.getFirstName()}"></td>
+                <td th:text="${eachApplication.getSecondName()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="services__table">
+        <h1>УСЛУГИ</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Цена</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="maintenance : ${maintenances}">
+                <th th:text="${maintenance.getId()}"></th>
+                <td th:text="${maintenance.getName()}"></td>
+                <td th:text="${maintenance.getPrice()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <div>
+            <h1>Добавить новую услугу</h1>
+            <form method="post" th:action="@{/admin/panel}" th:object="${newMaintenance}">
+                <div>
+                    <label for="name">Название:</label>
+                    <input type="text" th:field="*{name}" id="name" name="name"
+                           required>
+                </div>
+                <div>
+                    <label for="price">Цена:</label>
+                    <input type="number" th:field="*{price}" id="price" name="price"
+                           required>
+                </div>
+                <button>Добавить</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

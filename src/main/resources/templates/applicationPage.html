@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Новая заявка</title>
+</head>
+<body>
+
+<nav>
+    <a th:href="@{/}">Auto Service</a>
+
+    <div>
+        <ul>
+            <li>
+                <a th:href="@{/}">Главная <span>(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div style="margin: auto; margin-top: 50px">
+    <div>
+        <h2>Оставьте заявку</h2>
+        <p>Заполните поля ниже, чтобы записаться в сервис</p>
+        <form method="post" th:action="@{/application}" th:object="${application}">
+            <div>
+                <label for="date">Дата:</label>
+                <input type="date" th:field="*{date}" id="date" name="date" required>
+            </div>
+            <div>
+                <label for="email">E-mail:</label>
+                <input type="text" th:field="*{email}" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="firstName">Имя:</label>
+                <input type="text" th:field="*{firstName}" id="firstName" name="firstName" required>
+            </div>
+            <div>
+                <label for="secondName">Фамилия:</label>
+                <input type="text" th:field="*{secondName}" id="secondName" name="secondName" required>
+            </div>
+            <div>
+                <label for="maintenance">Услуга:</label>
+                <select th:field="*{id_maintenance}" id="maintenance" name="maintenance" required>
+                    <option th:each="maintenance : ${maintenances}" th:type="text" th:text="${maintenance.name}" th:value="${maintenance.id}"></option>
+                </select>
+            </div>
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

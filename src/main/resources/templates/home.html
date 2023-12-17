@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      lang="">
+<head>
+  <title>Auto Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" th:href="@{/static/home.css}">
+  <link rel="stylesheet" th:href="@{/static/css/mdb.min.css}">
+
+</head>
+<body>
+<nav>
+  <a th:href="@{/}">Центр коммерческого обслуживания автомобилей</a>
+  <div>
+    <ul>
+      <li>
+        <a th:href="@{/}">Главная</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="image-container">
+  <div class="image">
+    <div class="image__content">
+      <div class="image__text">Запись на удобное время в СТО</div>
+      <a class="image__button" th:href="@{/application}">Записаться</a>
+    </div>
+  </div>
+</div>
+<div class="table-container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Услуга</th>
+      <th>Цена</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="maintenance : ${maintenances}">
+      <th th:text="${maintenance.getName()}"></th>
+      <td th:text="${maintenance.getPrice()}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+</body>
+</html>
